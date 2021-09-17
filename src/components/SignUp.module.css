@@ -1,0 +1,141 @@
+.formLogin {
+  background: #fff;
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--secondary-color);
+  padding: 25px;
+  border-radius: 11px;
+  min-width: 500px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.formLogin > h2 {
+  margin-bottom: 28px;
+  color: var(--main-color);
+  text-align: center;
+}
+
+.formLogin > div {
+  margin-bottom: 15px;
+}
+
+.formLogin > div > div {
+  position: relative;
+}
+
+.formLogin input[type="text"],
+.formLogin input[type="email"],
+.formLogin input[type="password"] {
+  background: #fff;
+  border-radius: 4px;
+  outline: 0;
+  border: 1px solid var(--secondary-color);
+  box-shadow: var(--box-shadow);
+  padding: 15px 32px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.formLogin input[type="checkbox"] {
+  position: relative;
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--main-color);
+  appearance: none;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+.formLogin input[type="checkbox"]:checked {
+  background-color: var(--main-color-hover);
+  background-image: url("../img/tik.svg");
+}
+
+.formLogin input[type="checkbox"]:focus {
+  outline: none;
+  border: 2px solid var(--main-color-hover);
+}
+
+.formLogin > div > div img {
+  position: absolute;
+  max-width: 20px;
+  max-height: 20px;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.formLogin ::placeholder {
+  color: #bfbbbb;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.formLogin > div span.error {
+  height: 10px;
+  text-align: left;
+  margin-top: 5px;
+  width: fit-content;
+  font-size: 0.7rem;
+  color: red;
+  line-height: 1px;
+  padding: 9px 3px;
+  border-radius: 3px;
+  background-color: rgba(255, 0, 0, 0.175);
+  display: inline-block;
+}
+
+.formLogin button[type="submit"] {
+  display: block;
+  text-align: center;
+  width: 100%;
+  border-radius: 8px;
+  outline: 0;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  margin: 15px 0;
+  background: var(--main-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.formLogin button[type="submit"]:hover {
+  background: var(--main-color-hover);
+  cursor: pointer;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 19px 0;
+}
+
+@media (max-width: 568px) {
+  .formLogin {
+    min-width: 300px;
+    padding: 16px;
+  }
+  .formLogin input[type="text"],
+  .formLoginQ input[type="email"],
+  .formLogin input[type="password"] {
+    padding: 10px 32px;
+  }
+}
