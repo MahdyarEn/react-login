@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import emailIcon from "../img/email.svg";
 import passwordIcon from "../img/password.svg";
-import { validate } from "./validate";
 import styles from "./SignUp.module.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { notify } from "./toast";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -14,12 +14,21 @@ const Login = () => {
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  useEffect(() => {
-    setErrors(validate(data,"Login"));
-  }, [data, touched]);
+  const chaeckData = (obj) => {
+    const { email, password } = obj;
+    const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${email}&password=${password}`;
+    const api = axios
+      .get(urlApi)
+      .then((response) => response.data)
+      .then((data) => (data.ok ? notify("You login to your account successfully", "success") : notify("Your password or your email is wrong", "error")));
+    toast.promise(api, {
+      pending: "Loading your data...",
+      success: false,
+      error: "Something went wrong!",
+    });
+  };
 
   const changeHandler = (event) => {
     if (event.target.name === "IsAccepted") {
@@ -35,39 +44,24 @@ const Login = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    notify();
-    if (!Object.keys(errors).length) {
-      notify("You signed Up successfully", "success");
-      console.log(data);
-    } else {
-      notify("Please Check fileds again", "error");
-      setTouched({
-        name: true,
-        email: true,
-        password: true,
-        confirmPassword: true,
-        IsAccepted: false,
-      });
-    }
+    chaeckData(data);
   };
 
   return (
     <div className={styles.container}>
       <form className={styles.formLogin} onSubmit={submitHandler} autoComplete="off">
-        <h2>Sign Up</h2>
+        <h2>Sign In</h2>
         <div>
           <div>
             <input type="text" name="email" value={data.email} placeholder="E-mail" onChange={changeHandler} onFocus={focusHandler} autoComplete="off" />
             <img src={emailIcon} alt="" />
           </div>
-          {errors.email && touched.email && <span className={styles.error}>{errors.email}</span>}
         </div>
         <div>
           <div>
             <input type="password" name="password" value={data.password} placeholder="Password" onChange={changeHandler} onFocus={focusHandler} autoComplete="off" />
             <img src={passwordIcon} alt="" />
           </div>
-          {errors.password && touched.password && <span className={styles.error}>{errors.password}</span>}
         </div>
 
         <div>
