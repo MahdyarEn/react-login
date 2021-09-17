@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { notify } from "./toast";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -42,7 +43,9 @@ const SignUp = () => {
     notify();
     if (!Object.keys(errors).length) {
       notify("You signed Up successfully", "success");
-      console.log(data);
+      // Pushing data to database usuing PHP script
+      const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${data.email}&password=${data.password}&register=true`;
+      axios.get(urlApi).catch((error) => alert("Something wen't wrong while adding your information to database"));
     } else {
       notify("Please Check fileds again", "error");
       setTouched({
