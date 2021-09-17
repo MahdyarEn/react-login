@@ -9,7 +9,7 @@ You can easily add the registration form and login form to your project using th
 
 **Also note** that you should use **your database** to store and retrieve information, in this project this is done using a PHP script and it is just for testing.
 
-(This method is used in files: **Login.js** and **Register.js**)
+(This method is used in files: **Login.js** and **SignUp.js**)
 
 
 ----------------------------
