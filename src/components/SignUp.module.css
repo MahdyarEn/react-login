@@ -39,7 +39,49 @@
   padding: 15px 32px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
+.formLogin input[type="text"]:focus,
+.formLogin input[type="email"]:focus,
+.formLogin input[type="password"]:focus {
+  border: 1px solid var(--main-color);
+}
+
+.unCompleted > input {
+  border: 1px solid #ff0000 !important;
+}
+
+.completed > input {
+  border: 1px solid #42ba96 !important;
+  position: relative;
+}
+
+.unCompleted::after {
+  content: "";
+  background-image: url(../img/close.svg);
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.completed::after {
+  content: "";
+  background-image: url(../img/check.svg);
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
 .formLogin input[type="checkbox"] {
   position: relative;
   margin-right: 10px;
