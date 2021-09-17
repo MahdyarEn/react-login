@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import userIcon from "../img/user.svg";
 import emailIcon from "../img/email.svg";
 import passwordIcon from "../img/password.svg";
 import { validate } from "./validate";
@@ -9,20 +8,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { notify } from "./toast";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const Login = () => {
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    IsAccepted: false,
   });
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
   useEffect(() => {
-    setErrors(validate(data, "signUp"));
+    setErrors(validate(data,"Login"));
   }, [data, touched]);
 
   const changeHandler = (event) => {
@@ -61,13 +57,6 @@ const SignUp = () => {
         <h2>Sign Up</h2>
         <div>
           <div>
-            <input type="text" name="name" value={data.name} placeholder="Name" onChange={changeHandler} onFocus={focusHandler} autoComplete="off" />
-            <img src={userIcon} alt="" />
-          </div>
-          {errors.name && touched.name && <span className={styles.error}>{errors.name}</span>}
-        </div>
-        <div>
-          <div>
             <input type="text" name="email" value={data.email} placeholder="E-mail" onChange={changeHandler} onFocus={focusHandler} autoComplete="off" />
             <img src={emailIcon} alt="" />
           </div>
@@ -80,24 +69,11 @@ const SignUp = () => {
           </div>
           {errors.password && touched.password && <span className={styles.error}>{errors.password}</span>}
         </div>
+
         <div>
-          <div>
-            <input type="password" name="confirmPassword" value={data.confirmPassword} placeholder="Confirm Password" onChange={changeHandler} onFocus={focusHandler} autoComplete="off" />
-            <img src={passwordIcon} alt="" />
-          </div>
-          {errors.confirmPassword && touched.confirmPassword && <span className={styles.error}>{errors.confirmPassword}</span>}
-        </div>
-        <div>
-          <div className={styles.terms}>
-            <input type="checkbox" name="IsAccepted" value={data.IsAccepted} id="accept" onChange={changeHandler} onFocus={focusHandler} />
-            <label htmlFor="accept">I accept terms of privacy policy</label>
-          </div>
-          {errors.IsAccepted && touched.IsAccepted && <span className={styles.error}>{errors.IsAccepted}</span>}
-        </div>
-        <div>
-          <button type="submit">Create Account</button>
+          <button type="submit">Login</button>
           <span style={{ color: "#a29494", textAlign: "center", display: "inline-block", width: "100%" }}>
-            Already have a account? <Link to="/login">Sign In</Link>
+            Don't have a account? <Link to="/signup">Create account</Link>
           </span>
         </div>
       </form>
@@ -106,4 +82,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

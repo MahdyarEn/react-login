@@ -1,11 +1,5 @@
-export const validate = (data) => {
+export const validate = (data, type) => {
   const errors = {};
-
-  if (!data.name.trim()) {
-    errors.name = "Username is Required!";
-  } else {
-    delete errors.name;
-  }
 
   if (!data.email) {
     errors.email = "Email is Required!";
@@ -23,18 +17,25 @@ export const validate = (data) => {
     delete errors.password;
   }
 
-  if (!data.confirmPassword) {
-    errors.confirmPassword = "Confirm the Password";
-  } else if (!(data.confirmPassword === data.password)) {
-    errors.confirmPassword = "Password is not match!";
-  } else {
-    delete errors.confirmPassword;
-  }
+  if (type === "signUp") {
+    if (!data.name.trim()) {
+      errors.name = "Username is Required!";
+    } else {
+      delete errors.name;
+    }
+    if (!data.confirmPassword) {
+      errors.confirmPassword = "Confirm the Password";
+    } else if (!(data.confirmPassword === data.password)) {
+      errors.confirmPassword = "Password is not match!";
+    } else {
+      delete errors.confirmPassword;
+    }
 
-  if (data.IsAccepted) {
-    delete errors.IsAccepted;
-  } else {
-    errors.IsAccepted = "Accept terms!";
+    if (data.IsAccepted) {
+      delete errors.IsAccepted;
+    } else {
+      errors.IsAccepted = "Accept terms!";
+    }
   }
 
   return errors;
