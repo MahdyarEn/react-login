@@ -44,7 +44,7 @@ const SignUp = () => {
     if (!Object.keys(errors).length) {
       notify("You signed Up successfully", "success");
       // Pushing data to database usuing PHP script
-      const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${data.email}&password=${data.password}&register=true`;
+      const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${data.email.toLowerCase()}&password=${data.password}&register=true`;
       axios.get(urlApi).catch((error) => alert("Something wen't wrong while adding your information to database"));
     } else {
       notify("Please Check fileds again", "error");

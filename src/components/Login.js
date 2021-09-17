@@ -18,7 +18,7 @@ const Login = () => {
 
   const chaeckData = (obj) => {
     const { email, password } = obj;
-    const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${email}&password=${password}`;
+    const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${email.toLowerCase()}&password=${password}`;
     const api = axios
       .get(urlApi)
       .then((response) => response.data)
