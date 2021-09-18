@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+//Icon
 import userIcon from "../img/user.svg";
 import emailIcon from "../img/email.svg";
 import passwordIcon from "../img/password.svg";
+// Validate
 import { validate } from "./validate";
+// Styles
 import styles from "./SignUp.module.css";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// Toast
+import { ToastContainer, toast } from "react-toastify";
 import { notify } from "./toast";
+//
 import { Link } from "react-router-dom";
+// Axios
 import axios from "axios";
 
 const SignUp = () => {
@@ -40,12 +46,23 @@ const SignUp = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    notify();
     if (!Object.keys(errors).length) {
-      notify("You signed Up successfully", "success");
       // Pushing data to database usuing PHP script
       const urlApi = `https://lightem.senatorhost.com/login-react/index.php?email=${data.email.toLowerCase()}&password=${data.password}&register=true`;
-      axios.get(urlApi).catch((error) => alert("Something wen't wrong while adding your information to database"));
+      const pushData = async () => {
+        const responseA = axios.get(urlApi);
+        const response = await toast.promise(responseA, {
+          pending: "Check your data",
+          success: "Checked!",
+          error: "Something went wrong!",
+        });
+        if (response.data.ok) {
+          notify("You signed Up successfully", "success");
+        } else {
+          notify("You have already registered, log in to your account", "warning");
+        }
+      };
+      pushData();
     } else {
       notify("Please Check fileds again", "error");
       setTouched({
